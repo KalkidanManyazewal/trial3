@@ -42,7 +42,7 @@ fig = px.scatter_mapbox(
     lat="Latitude",
     lon="Longitude",
     color="Location",
-    color_discrete_sequence=["blue", "red"],
+    color_discrete_sequence=["Streamlit theme (default)", "Plotly native theme"],
     zoom=11,
     height=500,
     width=800,
@@ -54,10 +54,4 @@ fig.update_geos(center=dict(lat=dataframe.iloc[0][2], lon=dataframe.iloc[0][3]))
 fig.update_layout(mapbox_style="stamen-terrain")
 
 # Show the figure
-st.plotly_chart(fig, use_container_width=True)
-
-tab1, tab2 = st.tabs(["Streamlit theme (default)", "Plotly native theme"])
-    with tab1:
-        st.plotly_chart(fig, theme="streamlit")
-    with tab2:
-        st.plotly_chart(fig, theme=None)
+st.plotly_chart(fig, theme="streamlit", use_container_width=True)
